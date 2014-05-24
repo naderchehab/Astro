@@ -5,296 +5,195 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Nader Chehab">
 
     <title>Astro</title>
 
-    <link href="lib/bootstrap-3.1.1-dist/css/bootstrap.css" rel="stylesheet">
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-    <link href="css/landing-page.css" rel="stylesheet">
-	<link rel="stylesheet" href="lib/tablesaw/tablesaw.css">
+    <link href="/public/lib/bootstrap-3.1.1-dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/public/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/public/css/landing-page.css" rel="stylesheet">
+    <link href="/public/lib/tablesaw/tablesaw.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic'
+          rel='stylesheet' type='text/css'>
 
-    <script src="lib/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
-    <script src="lib/jquery-1.11.1/jquery-1.11.1.min.js"></script>
-	<script src="lib/tablesaw/tablesaw.js"></script>
-	
-	<script>
-	/* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
-	window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var r=t.document.createElement("link"),a=t.document.getElementsByTagName("script")[0];r.rel="stylesheet",r.href=e[o&&n?0:o?1:2],a.parentNode.insertBefore(r,a)},r=new t.Image;r.onerror=function(){o(!1)},r.onload=function(){o(1===r.width&&1===r.height)},r.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};
-			grunticon(["../dist/icons/icons.data.svg.css", "../dist/icons/icons.data.png.css", "../dist/icons/icons.fallback.css"]);
-	</script>
+    <script src="/public/lib/jquery-1.11.1/jquery-1.11.1.min.js"></script>
+    <script src="/public/lib/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+    <script src="/public/lib/tablesaw/tablesaw.js"></script>
+    <script src="/public/lib/react-0.10.0/react-with-addons.min.js"></script>
+    <script src="/public/lib/react-0.10.0/JSXTransformer.js"></script>
+    <script src="/public/js/astro.js" type="text/jsx"></script>
+
+    <script>
+        /* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
+        window.grunticon = function (e) {
+            if (e && 3 === e.length) {
+                var t = window, n = !(!t.document.createElementNS || !t.document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect || !document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1") || window.opera && -1 === navigator.userAgent.indexOf("Chrome")), o = function (o) {
+                    var r = t.document.createElement("link"), a = t.document.getElementsByTagName("script")[0];
+                    r.rel = "stylesheet", r.href = e[o && n ? 0 : o ? 1 : 2], a.parentNode.insertBefore(r, a)
+                }, r = new t.Image;
+                r.onerror = function () {
+                    o(!1)
+                }, r.onload = function () {
+                    o(1 === r.width && 1 === r.height)
+                }, r.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+            }
+        };
+        grunticon(["/public/lib/tablesaw/icons/icons.data.svg.css", "/public/lib/tablesaw/icons/icons.data.png.css", "/public/lib/tablesaw/dist/icons/icons.fallback.css"]);
+    </script>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="http://startbootstrap.com">Astro</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#about">About</a>
-                    </li>
-                    <li><a href="#services">Services</a>
-                    </li>
-                    <li><a href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://startbootstrap.com">Astro</a>
         </div>
-        <!-- /.container -->
-    </nav>
 
-    <div class="intro-header">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="#about">About</a>
+                </li>
+                <li><a href="#services">Services</a>
+                </li>
+                <li><a href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-        <div class="container">
+<div class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <h1>Astro</h1>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
-                        <h1>Astro</h1>
-                        <h3>Catchy subtitle goes here</h3>
-                        <hr class="intro-divider">
-                        <ul class="list-inline intro-social-buttons">
-                            <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                            </li>
-                            <li><a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                            </li>
-                            <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-                            </li>
-                        </ul>
-                    </div>
+                    <h3>Catchy subtitle goes here</h3>
+                    <hr class="intro-divider">
+                    <ul class="list-inline intro-social-buttons">
+                        <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i
+                                class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li><a href="https://github.com/IronSummitMedia/startbootstrap"
+                               class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span
+                                class="network-name">Github</span></a>
+                        </li>
+                        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span
+                                class="network-name">Linkedin</span></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
         </div>
-        <!-- /.container -->
-
     </div>
-    <!-- /.intro-header -->
+</div>
 
-    <div class="content-section-a">
+<div class="content-section-a">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12" id="table-container">
 
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12 col-sm-12">
-<table id="table2" class="tablesaw" data-mode="swipe" data-sortable data-sortable-switch data-minimap data-mode-switch>
-		<thead>
-			<tr>
-				<th data-sortable-col data-sortable-default-col data-priority="persist">Movie Title</th>
-				<th data-sortable-col data-priority="3">Rank</th>
-				<th data-sortable-col data-priority="2">Year</th>
-				<th data-sortable-col data-priority="1"><abbr title="Rotten Tomato Rating">Rating</abbr></th>
-				<th data-sortable-col data-priority="4">Reviews</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Citizen_Kane" data-rel="external">Citizen Kane</a></td>
-				<td class="har">1</td>
-				<td>1941</td>
-				<td>100%</td>
-				<td>74</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Casablanca_(film)" data-rel="external">Casablanca</a></td>
-				<td>2</td>
-				<td>1942</td>
-				<td>97%</td>
-				<td>64</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/The_Godfather" data-rel="external">The Godfather</a></td>
-				<td>3</td>
-				<td>1972</td>
-				<td>97%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Gone_with_the_Wind_(film)" data-rel="external">Gone with the Wind</a></td>
-				<td>4</td>
-				<td>1939</td>
-				<td>96%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
-				<td>5</td>
-				<td>1962</td>
-				<td>94%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
-				<td>5</td>
-				<td>1962</td>
-				<td>94%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
-				<td>5</td>
-				<td>1962</td>
-				<td>94%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
-				<td>5</td>
-				<td>1962</td>
-				<td>94%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
-				<td>5</td>
-				<td>1962</td>
-				<td>94%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
-				<td>5</td>
-				<td>1962</td>
-				<td>94%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
-				<td>5</td>
-				<td>1962</td>
-				<td>94%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
-				<td>5</td>
-				<td>1962</td>
-				<td>94%</td>
-				<td>87</td>
-			</tr>
-			<tr>
-				<td><a href="http://en.wikipedia.org/wiki/Lawrence_of_Arabia_(film)" data-rel="external">Lawrence of Arabia</a></td>
-				<td>5</td>
-				<td>1962</td>
-				<td>94%</td>
-				<td>87</td>
-			</tr>
-		</tbody>
-	</table>
             </div>
-
         </div>
-        <!-- /.container -->
-
     </div>
-    <!-- /.content-section-a -->
 
     <div class="content-section-b">
-
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">3D Device Mockups
                         <br>by PSDCovers</h2>
-                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by PSDCovers! <a target="_blank" href="http://www.psdcovers.com/">Visit their website</a> to download some of their awesome, free photoshop actions!</p>
+
+                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free
+                        Photoshop actions by PSDCovers! <a target="_blank" href="http://www.psdcovers.com/">Visit their
+                            website</a> to download some of their awesome, free photoshop actions!</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/doge.png" alt="">
+                    <img class="img-responsive" src="/public/img/doge.png" alt="">
                 </div>
             </div>
-
         </div>
-        <!-- /.container -->
-
     </div>
-    <!-- /.content-section-b -->
 
     <div class="content-section-a">
-
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <h2 class="section-heading">Google Web Fonts and
                         <br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+
+                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank"
+                                                                                           href="http://www.google.com/fonts">Google
+                        Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font
+                        Awesome</a>.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" alt="">
+                    <img class="img-responsive" src="/public/img/phones.png" alt="">
                 </div>
             </div>
 
         </div>
-        <!-- /.container -->
-
     </div>
-    <!-- /.content-section-a -->
 
     <div class="banner">
-
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-6">
                     <h2>Connect to Astro:</h2>
                 </div>
                 <div class="col-lg-6">
                     <ul class="list-inline banner-social-buttons">
-                        <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i
+                                class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
                         </li>
-                        <li><a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        <li><a href="https://github.com/IronSummitMedia/startbootstrap"
+                               class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span
+                                class="network-name">Github</span></a>
                         </li>
-                        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                        <li><a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span
+                                class="network-name">Linkedin</span></a>
                         </li>
                     </ul>
                 </div>
             </div>
 
         </div>
-        <!-- /.container -->
-
     </div>
-    <!-- /.banner -->
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="list-inline">
-                        <li><a href="#home">Home</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li><a href="#about">About</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li><a href="#services">Services</a>
-                        </li>
-                        <li class="footer-menu-divider">&sdot;</li>
-                        <li><a href="#contact">Contact</a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted small">Copyright &copy; Astro 2014. All Rights Reserved</p>
-                </div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="list-inline">
+                    <li><a href="#home">Home</a>
+                    </li>
+                    <li class="footer-menu-divider">&sdot;</li>
+                    <li><a href="#about">About</a>
+                    </li>
+                    <li class="footer-menu-divider">&sdot;</li>
+                    <li><a href="#services">Services</a>
+                    </li>
+                    <li class="footer-menu-divider">&sdot;</li>
+                    <li><a href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted small">Copyright &copy; Astro 2014. All Rights Reserved</p>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>
