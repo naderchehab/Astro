@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Citizen Kane",
+        "rank": "1",
+        "year": "1941",
+        "rating": "96%",
+        "reviews": "155"
+    },
+    {
+        "title": "The Shawshank Redemption",
+        "rank": "2",
+        "year": "1995",
+        "rating": "95%",
+        "reviews": "145"
+    },
+    {
+        "title": "The Godfather",
+        "rank": "3",
+        "year": "1971",
+        "rating": "94%",
+        "reviews": "178"
+    }
+]

@@ -135,7 +135,7 @@
 		});
 	};
 
-	$( document ).on( "enhance.tablesaw", function( e ) {
+	$( document ).on("enhance.tablesaw", function( e ) {
 		$( e.target ).find( initSelector )[ pluginName ]();
 	});
 
