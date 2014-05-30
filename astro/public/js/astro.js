@@ -1,14 +1,52 @@
 /** @jsx React.DOM */
 
+var EditableCell = React.createClass({
+    getInitialState: function () {
+        return {isEditMode: false, data: ""};
+    },
+    componentWillMount: function () {
+        this.setState({isEditMode: this.props.isEditMode, data: this.props.data});
+    },
+    handleEditCell: function(evt) {
+        this.setState({isEditMode: true});
+
+    },
+    handleKeyDown: function(evt) {
+        switch(evt.keyCode) {
+            case 13:
+                this.setState({isEditMode: false});
+                break;
+            case 9:
+                this.setState({isEditMode: false});
+                break;
+        }
+    },
+    handleChange: function(evt) {
+        this.setState({data: evt.target.value});
+    },
+    render: function() {
+        var cellHtml;
+        if (this.state.isEditMode) {
+            cellHtml = <input type='text' value={this.state.data} onKeyDown={this.handleKeyDown} onChange={this.handleChange} />
+        }
+        else {
+            cellHtml = <div onClick={this.handleEditCell}>{this.state.data}</div>
+        }
+        return (
+        <td>{cellHtml}</td>
+            );
+    }
+});
+
 var Movie = React.createClass({
     render: function() {
         return (
             <tr>
-                <td>{this.props.title}</td>
-                <td className="har">{this.props.rank}</td>
-                <td>{this.props.year}</td>
-                <td>{this.props.rating}</td>
-                <td>{this.props.reviews}</td>
+                <EditableCell data={this.props.title} />
+                <EditableCell className="har" data={this.props.rank} />
+                <EditableCell data={this.props.year} />
+                <EditableCell data={this.props.rating} />
+                <EditableCell data={this.props.reviews} />
             </tr>
             );
     }
