@@ -77,9 +77,9 @@ func MoviesHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	for i := 0; i < len(results); i++ {
-		fmt.Fprintf(w, results[i].Title+"\n")
-	}
+	b, err := json.Marshal(results)
+	fmt.Fprintf(w, string(b))
+
 }
 
 // Update a movie
