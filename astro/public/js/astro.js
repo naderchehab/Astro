@@ -102,7 +102,7 @@ React.renderComponent(
                 <th data-sortable-col data-priority="4">Reviews</th>
             </tr>
         </thead>
-        <MovieList url="/public/js/movies.json"/>
+        <MovieList url="/movies"/>
     </table>,
     document.getElementById('table-container')
 );

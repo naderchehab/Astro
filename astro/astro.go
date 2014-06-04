@@ -11,12 +11,12 @@ import (
 )
 
 type Movie struct {
-	Id      int
-	Title   string
-	Rank    string
-	Year    string
-	Rating  string
-	Reviews string
+	Id      int    `json:"id"`
+	Title   string `json:"title"`
+	Rank    string `json:"rank"`
+	Year    string `json:"year"`
+	Rating  string `json:"rating"`
+	Reviews string `json:"reviews"`
 }
 
 type Rental struct {
@@ -44,12 +44,9 @@ func PageHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	name := params["name"]
 
-	//fmt.Print("In PageHandler. name: " + name + "\n")
-
 	if name == "" {
 		name = "index"
 	}
-
 	http.ServeFile(w, r, "public/"+name+".html")
 }
 
@@ -79,7 +76,6 @@ func MoviesHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	b, err := json.Marshal(results)
 	fmt.Fprintf(w, string(b))
-
 }
 
 // Update a movie
