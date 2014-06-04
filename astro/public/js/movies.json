@@ -1,5 +1,7 @@
+// mongoimport --db astro --collection movies --type json --file movies.json --jsonArray
 [
     {
+        "id": 0,
         "title": "Citizen Kane",
         "rank": "1",
         "year": "1941",
@@ -7,6 +9,7 @@
         "reviews": "155"
     },
     {
+        "id": 1,
         "title": "The Shawshank Redemption",
         "rank": "2",
         "year": "1995",
@@ -14,6 +17,7 @@
         "reviews": "145"
     },
     {
+        "id": 2,
         "title": "The Godfather",
         "rank": "3",
         "year": "1971",

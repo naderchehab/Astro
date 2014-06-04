@@ -13,11 +13,22 @@ var EditableCell = React.createClass({
     },
     handleKeyDown: function(evt) {
         switch(evt.keyCode) {
-            case 13:
+            case 13: // Enter
+            case 9:  // Tab
                 this.setState({isEditMode: false});
-                break;
-            case 9:
-                this.setState({isEditMode: false});
+
+                $.ajax({
+                    url: "/save",
+                    type: "POST",
+                    data: {id: this.props.id, field: this.props.field, value: evt.target.value},
+                    success: function(data) {
+                        console.log(data);
+                    }.bind(this),
+                    error: function(xhr, status, err) {
+                        console.error(this.props.url, status, err.toString());
+                    }.bind(this)
+                });
+
                 break;
         }
     },
@@ -42,11 +53,11 @@ var Movie = React.createClass({
     render: function() {
         return (
             <tr>
-                <EditableCell data={this.props.title} />
-                <EditableCell className="har" data={this.props.rank} />
-                <EditableCell data={this.props.year} />
-                <EditableCell data={this.props.rating} />
-                <EditableCell data={this.props.reviews} />
+                <EditableCell id={this.props.id} field="title" data={this.props.title} />
+                <EditableCell id={this.props.id} field="rank" data={this.props.rank} className="har" />
+                <EditableCell id={this.props.id} field="year" data={this.props.year} />
+                <EditableCell id={this.props.id} field="rating" data={this.props.rating} />
+                <EditableCell id={this.props.id} field="reviews" data={this.props.reviews} />
             </tr>
             );
     }
@@ -70,7 +81,7 @@ var MovieList = React.createClass({
     },
    render: function() {
        var movies = this.state.data.map(function (movie) {
-           return <Movie title={movie.title} rank={movie.rank} year={movie.year} rating={movie.rating} reviews={movie.reviews} />;
+           return <Movie id={movie.id} title={movie.title} rank={movie.rank} year={movie.year} rating={movie.rating} reviews={movie.reviews} />;
        });
        return (
            <tbody>{movies}</tbody>
