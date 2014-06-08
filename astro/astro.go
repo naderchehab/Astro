@@ -2,12 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
-	"github.com/gorilla/mux"
+	"github.com/go-martini/martini"
 	"labix.org/v2/mgo"
 	"labix.org/v2/mgo/bson"
-	"log"
 	"net/http"
+	"strconv"
 )
 
 type Movie struct {
@@ -19,86 +18,54 @@ type Movie struct {
 	Reviews string `json:"reviews"`
 }
 
-type Rental struct {
-	Name string
-}
-
 func main() {
 
-	r := mux.NewRouter()
-
-	// Routes
-	r.HandleFunc("/save", SaveHandler).Methods("POST")
-	r.HandleFunc("/movies", MoviesHandler).Methods("GET")
-	r.HandleFunc("/{name}", PageHandler).Methods("GET")
-	r.HandleFunc("/public/{path:.*}", PublicHandler).Methods("GET")
-	r.HandleFunc("/", PageHandler).Methods("GET")
-	http.Handle("/", r)
-
-	// Listen and serve requests
-	fmt.Printf("Serving requests on port 80...")
-	log.Fatal(http.ListenAndServe(":80", nil))
-}
-
-func PageHandler(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	name := params["name"]
-
-	if name == "" {
-		name = "index"
-	}
-	http.ServeFile(w, r, "public/"+name+".html")
-}
-
-func PublicHandler(w http.ResponseWriter, r *http.Request) {
-	params := mux.Vars(r)
-	path := params["path"]
-	//fmt.Print("In PublicHandler. path: " + path + "\n")
-	http.ServeFile(w, r, "public/"+path)
-}
-
-// List movie
-func MoviesHandler(w http.ResponseWriter, r *http.Request) {
-
+	// Connect to DB
 	session, err := mgo.Dial("localhost:27017")
+	session.SetMode(mgo.Strong, true)
 
 	if err != nil {
 		panic(err)
 	}
 	defer session.Close()
 
-	c := session.DB("astro").C("movies")
+	// Serve static files
+	m := martini.Classic()
 
-	results := []Movie{}
-	err = c.Find(nil).All(&results)
-	if err != nil {
-		panic(err)
-	}
-	b, err := json.Marshal(results)
-	fmt.Fprintf(w, string(b))
-}
+	// GET: List of movies
+	m.Get("/movies", func() string {
+		c := session.DB("astro").C("movies")
+		results := []Movie{}
+		err := c.Find(nil).All(&results)
+		if err != nil {
+			panic(err)
+		}
+		b, err := json.Marshal(results)
+		return string(b)
+	})
 
-// Update a movie
-func SaveHandler(w http.ResponseWriter, r *http.Request) {
-	id := r.FormValue("id")
-	field := r.FormValue("field")
-	value := r.FormValue("value")
+	// POST: save a movie
+	m.Post("/save", func(w http.ResponseWriter, r *http.Request) {
+		c := session.DB("astro").C("movies")
 
-	// Open mongo connection
-	session, err := mgo.Dial("localhost:27017")
+		id := r.FormValue("id")
+		field := r.FormValue("field")
+		value := r.FormValue("value")
 
-	if err != nil {
-		panic(err)
-	}
-	defer session.Close()
+		nId, err := strconv.ParseInt(id, 10, 32)
 
-	c := session.DB("astro").C("movies")
+		if err != nil {
+			panic(err)
+		}
 
-	// Update
-	colQuerier := bson.M{"id": id}
-	change := bson.M{"$set": bson.M{field: value}}
-	err = c.Update(colQuerier, change)
-	if err != nil {
-		panic(err)
-	}
+		var movie Movie
+
+		// Update
+		err = c.Update(bson.M{"id": nId}, bson.M{"$set": bson.M{field: value}})
+
+		if err != nil {
+			panic(err)
+		}
+	})
+	m.Run()
 }
